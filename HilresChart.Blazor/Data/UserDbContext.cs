@@ -1,4 +1,4 @@
-﻿// <copyright file="ApplicationDbContext.cs" company="Hilres">
+﻿// <copyright file="UserDbContext.cs" company="Hilres">
 // Copyright (c) Hilres. All rights reserved.
 // </copyright>
 
@@ -10,13 +10,13 @@ namespace HilresChart.Blazor.Data
     /// <summary>
     /// Application database context class.
     /// </summary>
-    public class ApplicationDbContext : IdentityDbContext
+    public class UserDbContext : IdentityDbContext
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApplicationDbContext"/> class.
+        /// Initializes a new instance of the <see cref="UserDbContext"/> class.
         /// </summary>
         /// <param name="options">DbContextOptions ApplicationDbContext.</param>
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public UserDbContext(DbContextOptions<UserDbContext> options)
             : base(options)
         {
         }

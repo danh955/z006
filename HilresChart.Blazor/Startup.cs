@@ -44,11 +44,14 @@ namespace HilresChart.Blazor
         /// <param name="services">IServiceCollection.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    this.Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<UserDbContext>(options =>
+                options.UseSqlite(this.Configuration.GetConnectionString("UserConnection")));
+            services.AddDefaultIdentity<IdentityUser>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = true;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<UserDbContext>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
