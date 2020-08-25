@@ -6,11 +6,12 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02336AD2-142D-4EFF-94FA-78519E536CDC}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		en-US_User.dic = en-US_User.dic
 		README.md = README.md
 		z006.sln.vsspell = z006.sln.vsspell
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HilresChart.Blazor", "HilresChart.Blazor\HilresChart.Blazor.csproj", "{89D670F6-4FF4-48BB-A60F-920D941C9B91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HilresChart.Blazor", "HilresChart.Blazor\HilresChart.Blazor.csproj", "{89D670F6-4FF4-48BB-A60F-920D941C9B91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
