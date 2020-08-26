@@ -21,6 +21,7 @@ msbuild.wrn
 
 # Visual Studio
 .vs/
+.config/
 
 # Visual Studio Code
 .vscode
