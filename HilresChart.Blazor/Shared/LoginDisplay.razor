@@ -1,14 +1,14 @@
 ﻿@inject AuthenticationStateProvider AuthenticationStateProvider
 <AuthorizeView>
     <Authorized>
-        <a href="Identity/Account/Manage">Hello, @*@context.User.Identity.Name*@ @GetUserName()!</a>
+        <a class="nav-link" href="Identity/Account/Manage">Hello, @*@context.User.Identity.Name*@ @GetUserName()!</a>
         <form method="post" action="Identity/Account/LogOut">
             <button type="submit" class="nav-link btn btn-link">Log out</button>
         </form>
     </Authorized>
     <NotAuthorized>
-        <a href="Identity/Account/Register">Register</a>
-        <a href="Identity/Account/Login">Log in</a>
+        <a class="nav-link" href="Identity/Account/Login">Log in</a>
+        <a class="nav-link" href="Identity/Account/Register">Register</a>
     </NotAuthorized>
 </AuthorizeView>
 
