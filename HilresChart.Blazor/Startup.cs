@@ -7,12 +7,12 @@
 namespace HilresChart.Blazor
 {
     using HilresChart.Blazor.Areas.Identity;
-    using HilresChart.Blazor.Data;
+    using HilresChart.Core;
+    using HilresChart.Core.Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Components.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
@@ -44,14 +44,13 @@ namespace HilresChart.Blazor
         /// <param name="services">IServiceCollection.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UserDbContext>(options =>
-                options.UseSqlite(this.Configuration.GetConnectionString("UserConnection")));
+            services.AddCoreServes(this.Configuration.GetConnectionString("UserConnection"));
             services.AddDefaultIdentity<IdentityUser>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = true;
                     options.Password.RequireNonAlphanumeric = false;
                 })
-                .AddEntityFrameworkStores<UserDbContext>();
+                .AddEntityFrameworkStores<CoreDbContext>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();

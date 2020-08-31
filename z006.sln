@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HilresChart.Blazor", "HilresChart.Blazor\HilresChart.Blazor.csproj", "{89D670F6-4FF4-48BB-A60F-920D941C9B91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HilresChart.Core", "HilresChart.Core\HilresChart.Core.csproj", "{D7E2E04E-C5E8-4893-B9F6-C9B6EB3F702E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{89D670F6-4FF4-48BB-A60F-920D941C9B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89D670F6-4FF4-48BB-A60F-920D941C9B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89D670F6-4FF4-48BB-A60F-920D941C9B91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7E2E04E-C5E8-4893-B9F6-C9B6EB3F702E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7E2E04E-C5E8-4893-B9F6-C9B6EB3F702E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7E2E04E-C5E8-4893-B9F6-C9B6EB3F702E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7E2E04E-C5E8-4893-B9F6-C9B6EB3F702E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

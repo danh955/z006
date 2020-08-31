@@ -15,10 +15,6 @@ app {
         max-width: 970px;
     }
 
-    .page-header nav {
-        vertical-align: bottom;
-    }
-
     .page-header form {
         display: inline;
         margin-top: -0.2rem;
