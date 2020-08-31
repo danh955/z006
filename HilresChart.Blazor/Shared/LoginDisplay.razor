@@ -1,7 +1,8 @@
 ﻿@inject AuthenticationStateProvider AuthenticationStateProvider
+@using HilresChart.Blazor.Extensions
 <AuthorizeView>
     <Authorized>
-        <a class="nav-link" href="Identity/Account/Manage">Hello, @*@context.User.Identity.Name*@ @GetUserName()!</a>
+        <a class="nav-link" href="Identity/Account/Manage">Hello, @context.GetUserName()</a>
         <form method="post" action="Identity/Account/LogOut">
             <button type="submit" class="nav-link btn btn-link">Log out</button>
         </form>
@@ -11,15 +12,3 @@
         <a class="nav-link" href="Identity/Account/Register">Register</a>
     </NotAuthorized>
 </AuthorizeView>
-
-@code
-{
-    private string GetUserName()
-    {
-
-        var authState = AuthenticationStateProvider.GetAuthenticationStateAsync().Result;
-        var name = authState.User.Identity.Name;
-        var idx = name.IndexOf('@');
-        return idx > 0 ? name.Substring(0, idx) : name;
-    }
-}
