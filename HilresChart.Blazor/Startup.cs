@@ -54,6 +54,7 @@ namespace HilresChart.Blazor
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+            services.AddHttpContextAccessor();
         }
 
         /// <summary>
