@@ -5,6 +5,7 @@
 namespace HilresChart.Core
 {
     using HilresChart.Core.Data;
+    using HilresChart.Core.Services;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -22,6 +23,7 @@ namespace HilresChart.Core
         public static IServiceCollection AddCoreServes(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<CoreDbContext>(options => options.UseSqlite(connectionString));
+            services.AddTransient<IPortfolioService, PortfolioService>();
 
             return services;
         }

@@ -4,6 +4,8 @@
 
 namespace HilresChart.Core.Data
 {
+    using System;
+    using HilresChart.Core.Model;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +21,23 @@ namespace HilresChart.Core.Data
         public CoreDbContext(DbContextOptions<CoreDbContext> options)
             : base(options)
         {
+        }
+
+        /// <summary>
+        /// Gets the portfolios data set.
+        /// </summary>
+        public DbSet<Portfolio> Portfolios { get; internal set; }
+
+        /// <inheritdoc/>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            if (builder == null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
+            base.OnModelCreating(builder);
+            Portfolio.OnModelCreating(builder);
         }
     }
 }
