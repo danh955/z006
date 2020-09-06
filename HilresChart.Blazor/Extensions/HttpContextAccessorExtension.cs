@@ -24,7 +24,7 @@ namespace HilresChart.Blazor.Extensions
         /// Get name identifier claim.
         /// Same as get the user ID.
         /// </summary>
-        /// <param name="accessor">IHttpContextAccessor</param>
+        /// <param name="accessor">IHttpContextAccessor.</param>
         /// <returns>The user ID.  Null if not found.</returns>
         public static string GetNameIdentifierClaim(this IHttpContextAccessor accessor)
         {

@@ -16,6 +16,7 @@ namespace HilresChart.Blazor
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Syncfusion.Blazor;
 
     /// <summary>
     /// Startup class.
@@ -55,6 +56,7 @@ namespace HilresChart.Blazor
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddHttpContextAccessor();
+            services.AddSyncfusionBlazor();
         }
 
         /// <summary>
@@ -65,6 +67,8 @@ namespace HilresChart.Blazor
         /// <param name="env">IWebHostEnvironment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(this.Configuration["Syncfusion:LicenseKey"]);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

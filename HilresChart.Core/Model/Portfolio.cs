@@ -29,7 +29,7 @@ namespace HilresChart.Core.Model
         /// <summary>
         /// On model creating configures the entity.
         /// </summary>
-        /// <param name="builder">ModelBuilder</param>
+        /// <param name="builder">ModelBuilder.</param>
         internal static void OnModelCreating(ModelBuilder builder)
         {
             var portfolio = builder.Entity<Portfolio>();
