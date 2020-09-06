@@ -5,8 +5,10 @@
 namespace HilresChart.Core.Services
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using HilresChart.Core.Data;
     using HilresChart.Core.Model;
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// Portfolio service class.
@@ -25,13 +27,9 @@ namespace HilresChart.Core.Services
         }
 
         /// <inheritdoc/>
-        public List<Portfolio> GetUsersPortfolios(string userId)
+        public async Task<List<Portfolio>> GetUsersPortfoliosAsync(string userId)
         {
-            return new List<Model.Portfolio>
-            {
-                new Portfolio { Id = 1, UserId = "101", Name = "Default" },
-                new Portfolio { Id = 2, UserId = "102", Name = "Regular" },
-            };
+            return await this.db.Portfolios.ToListAsync().ConfigureAwait(false);
         }
     }
 }

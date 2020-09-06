@@ -26,9 +26,9 @@ namespace HilresChart.Blazor.Extensions
         /// </summary>
         /// <param name="accessor">IHttpContextAccessor.</param>
         /// <returns>The user ID.  Null if not found.</returns>
-        public static string GetNameIdentifierClaim(this IHttpContextAccessor accessor)
+        public static string GetUserId(this IHttpContextAccessor accessor)
         {
-            return accessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return accessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
     }
 }

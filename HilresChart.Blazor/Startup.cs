@@ -81,6 +81,8 @@ namespace HilresChart.Blazor
                 app.UseHsts();
             }
 
+            app.EnsureDatabaseMigrated();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

@@ -1,5 +1,7 @@
 ﻿@page "/portfolio"
+@using Extensions
 @inject HilresChart.Core.Services.IPortfolioService portfolioService
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
 
 <h3>Portfolio</h3>
 
@@ -15,9 +17,9 @@
 {
     private List<Portfolio> portfolios;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
-        this.portfolios = this.portfolioService.GetUsersPortfolios("abc");
+        await base.OnInitializedAsync();
+        this.portfolios = await this.portfolioService.GetUsersPortfoliosAsync(@accessor.GetUserId());
     }
 }

@@ -5,6 +5,7 @@
 namespace HilresChart.Core.Services
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using HilresChart.Core.Model;
 
     /// <summary>
@@ -17,6 +18,6 @@ namespace HilresChart.Core.Services
         /// </summary>
         /// <param name="userId">User ID.</param>
         /// <returns>List of portfolios.</returns>
-        List<Portfolio> GetUsersPortfolios(string userId);
+        Task<List<Portfolio>> GetUsersPortfoliosAsync(string userId);
     }
 }
