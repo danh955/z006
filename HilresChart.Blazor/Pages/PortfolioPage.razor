@@ -1,4 +1,5 @@
 ﻿@page "/portfolio"
+@attribute [Authorize]
 @using Extensions
 @inject HilresChart.Core.Services.IPortfolioService portfolioService
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
