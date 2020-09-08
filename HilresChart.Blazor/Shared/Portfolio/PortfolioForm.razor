@@ -1,0 +1,34 @@
+﻿@using Syncfusion.Blazor.Navigations
+@inject HilresChart.Core.Services.IPortfolioService portfolioService
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
+
+    <div>
+        <SfToolbar OverflowMode="@OverflowMode.Scrollable">
+            <ToolbarItems>
+                <ToolbarItem SuffixIcon="e-AddNew-icon tb-icons" Text="Add" OnClick="OnAddClick" />
+                <ToolbarItem SuffixIcon="e-Delete-icon tb-icons" Text="Delete" OnClick="OnDeleteClick" />
+                <ToolbarItem SuffixIcon="e-Edit-icon tb-icons" Text="Edit" OnClick="OnEditClick" />
+            </ToolbarItems>
+        </SfToolbar>
+    </div>
+
+    <div>@PortfolioId</div>
+
+    @code {
+        [Parameter]
+        public int PortfolioId { get; set; }
+
+        public void OnAddClick(ClickEventArgs args)
+        {
+            ////await this.portfolioService.AddAsync(new Portfolio { Name = "test" + DateTime.Now.ToString(), UserId = @accessor.GetUserId() });
+            ////await this.LoadTableAsync();
+        }
+
+        public void OnDeleteClick(ClickEventArgs args)
+        {
+        }
+
+        public void OnEditClick(ClickEventArgs args)
+        {
+        }
+    }

@@ -7,13 +7,23 @@
     <SplitterPanes>
         <SplitterPane Size="25%" Min="60px">
             <ContentTemplate>
-                <PortfolioList />
+                <PortfolioList RowSelected="RowSelectedHandler" />
             </ContentTemplate>
         </SplitterPane>
         <SplitterPane Size="75%" Min="60px">
             <ContentTemplate>
-                Nothing here yet.
+                <PortfolioForm PortfolioId="@portfolioId" />
             </ContentTemplate>
         </SplitterPane>
     </SplitterPanes>
 </SfSplitter>
+
+@code
+{
+    private int portfolioId;
+
+    private void RowSelectedHandler(int portfolioId)
+    {
+        this.portfolioId = portfolioId;
+    }
+}

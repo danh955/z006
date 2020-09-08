@@ -5,25 +5,17 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
 
 <div>
-    <div>
-        <SfToolbar OverflowMode="@OverflowMode.Scrollable">
-            <ToolbarItems>
-                <ToolbarItem SuffixIcon="e-AddNew-icon tb-icons" Text="Add" OnClick="OnAddClick" />
-                <ToolbarItem SuffixIcon="e-Delete-icon tb-icons" Text="Delete" OnClick="OnDeleteClick" />
-                <ToolbarItem SuffixIcon="e-Edit-icon tb-icons" Text="Edit" OnClick="OnEditClick" />
-            </ToolbarItems>
-        </SfToolbar>
-    </div>
-
     <SfGrid DataSource="@portfolios" AllowPaging="false">
+        <GridEvents RowSelected="RowSelectHandler" TValue="Portfolio"></GridEvents>
         <GridColumns>
-            <GridColumn Field=@nameof(Portfolio.Name) HeaderText="Portfolio Name" Width="120"></GridColumn>
+            <GridColumn Field=@nameof(Portfolio.Name) HeaderText="Portfolios" Width="120"></GridColumn>
         </GridColumns>
     </SfGrid>
 </div>
 @code
 {
-    //// TODO: Only have an add button.  remove SfToolbar.  Split screen and create form.
+    [Parameter]
+    public EventCallback<int> RowSelected { get; set; }
 
     private List<Portfolio> portfolios;
 
@@ -38,17 +30,8 @@
         this.portfolios = await this.portfolioService.GetUsersPortfoliosAsync(@accessor.GetUserId());
     }
 
-    public async Task OnAddClick(ClickEventArgs args)
+    private void RowSelectHandler(RowSelectEventArgs<Portfolio> args)
     {
-        await this.portfolioService.AddAsync(new Portfolio { Name = "test" + DateTime.Now.ToString(), UserId = @accessor.GetUserId() });
-        await this.LoadTableAsync();
-    }
-
-    public void OnDeleteClick(ClickEventArgs args)
-    {
-    }
-
-    public void OnEditClick(ClickEventArgs args)
-    {
+        RowSelected.InvokeAsync(args.Data.Id);
     }
 }
