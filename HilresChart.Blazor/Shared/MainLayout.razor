@@ -1,7 +1,9 @@
 ﻿@inherits LayoutComponentBase
-    <PageHeader />
-    <div class="main">
-        <div class="content px-2 mx-auto">
-            @Body
-        </div>
+<div class="container-fluid d-flex flex-column h-100">
+    <div class="page-header">
+        <PageHeader />
     </div>
+    <div class="Page-Content container flex-grow-1 px-2">
+        @Body
+    </div>
+</div>

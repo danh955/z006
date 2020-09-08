@@ -19,5 +19,12 @@ namespace HilresChart.Core.Services
         /// <param name="userId">User ID.</param>
         /// <returns>List of portfolios.</returns>
         Task<List<Portfolio>> GetUsersPortfoliosAsync(string userId);
+
+        /// <summary>
+        /// Add a portfolio.
+        /// </summary>
+        /// <param name="portfolio">Portfolio to added.</param>
+        /// <returns>Portfolio.</returns>
+        Task<Portfolio> AddAsync(Portfolio portfolio);
     }
 }

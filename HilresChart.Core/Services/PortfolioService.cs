@@ -31,5 +31,13 @@ namespace HilresChart.Core.Services
         {
             return await this.db.Portfolios.ToListAsync().ConfigureAwait(false);
         }
+
+        /// <inheritdoc/>
+        public async Task<Portfolio> AddAsync(Portfolio portfolio)
+        {
+            this.db.Portfolios.Add(portfolio);
+            await this.db.SaveChangesAsync().ConfigureAwait(false);
+            return portfolio;
+        }
     }
 }

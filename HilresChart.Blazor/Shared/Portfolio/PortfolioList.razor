@@ -1,0 +1,54 @@
+﻿@using HilresChart.Blazor.Extensions
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Navigations
+@inject HilresChart.Core.Services.IPortfolioService portfolioService
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
+
+<div>
+    <div>
+        <SfToolbar OverflowMode="@OverflowMode.Scrollable">
+            <ToolbarItems>
+                <ToolbarItem SuffixIcon="e-AddNew-icon tb-icons" Text="Add" OnClick="OnAddClick" />
+                <ToolbarItem SuffixIcon="e-Delete-icon tb-icons" Text="Delete" OnClick="OnDeleteClick" />
+                <ToolbarItem SuffixIcon="e-Edit-icon tb-icons" Text="Edit" OnClick="OnEditClick" />
+            </ToolbarItems>
+        </SfToolbar>
+    </div>
+
+    <SfGrid DataSource="@portfolios" AllowPaging="false">
+        <GridColumns>
+            <GridColumn Field=@nameof(Portfolio.Name) HeaderText="Portfolio Name" Width="120"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+</div>
+@code
+{
+    //// TODO: Only have an add button.  remove SfToolbar.  Split screen and create form.
+
+    private List<Portfolio> portfolios;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await LoadTableAsync();
+    }
+
+    private async Task LoadTableAsync()
+    {
+        this.portfolios = await this.portfolioService.GetUsersPortfoliosAsync(@accessor.GetUserId());
+    }
+
+    public async Task OnAddClick(ClickEventArgs args)
+    {
+        await this.portfolioService.AddAsync(new Portfolio { Name = "test" + DateTime.Now.ToString(), UserId = @accessor.GetUserId() });
+        await this.LoadTableAsync();
+    }
+
+    public void OnDeleteClick(ClickEventArgs args)
+    {
+    }
+
+    public void OnEditClick(ClickEventArgs args)
+    {
+    }
+}

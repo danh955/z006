@@ -1,6 +1,8 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
+    height: 100%;
+    margin: 0;
 }
 
 app {
@@ -11,18 +13,10 @@ app {
     border-bottom: 1px solid gray;
 }
 
-    .page-header div:first-of-type {
-        max-width: 970px;
-    }
-
     .page-header form {
         display: inline;
-        margin-top: -0.2rem;
+        margin-top: -0.1rem;
     }
-
-.main .content {
-    max-width: 970px;
-}
 
 #blazor-error-ui {
     background: lightyellow;
@@ -42,3 +36,17 @@ app {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+/* Bootstrap 4 Icons */
+
+.e-AddNew-icon:before {
+    content: "\e759"
+}
+
+.e-Delete-icon:before {
+    content: "\e773"
+}
+
+.e-Edit-icon:before {
+    content: "\e78f"
+}

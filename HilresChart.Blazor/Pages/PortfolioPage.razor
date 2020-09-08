@@ -1,26 +1,19 @@
 ﻿@page "/portfolio"
 @attribute [Authorize]
-@using Extensions
-@inject HilresChart.Core.Services.IPortfolioService portfolioService
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
+@using HilresChart.Blazor.Shared.Portfolio
+@using Syncfusion.Blazor.Layouts
 
-<h3>Portfolio</h3>
-
-<div>
-    <SfGrid DataSource="@portfolios" AllowPaging="true">
-        <GridColumns>
-            <GridColumn Field=@nameof(Portfolio.Name) HeaderText="Portfolio Name" Width="120"></GridColumn>
-        </GridColumns>
-    </SfGrid>
-</div>
-
-@code
-{
-    private List<Portfolio> portfolios;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        this.portfolios = await this.portfolioService.GetUsersPortfoliosAsync(@accessor.GetUserId());
-    }
-}
+<SfSplitter Height="100%" Width="100%" SeparatorSize="4" CssClass="">
+    <SplitterPanes>
+        <SplitterPane Size="25%" Min="60px">
+            <ContentTemplate>
+                <PortfolioList />
+            </ContentTemplate>
+        </SplitterPane>
+        <SplitterPane Size="75%" Min="60px">
+            <ContentTemplate>
+                Nothing here yet.
+            </ContentTemplate>
+        </SplitterPane>
+    </SplitterPanes>
+</SfSplitter>
