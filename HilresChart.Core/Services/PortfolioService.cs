@@ -5,6 +5,7 @@
 namespace HilresChart.Core.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using HilresChart.Core.Data;
     using HilresChart.Core.Model;
@@ -30,6 +31,12 @@ namespace HilresChart.Core.Services
         public async Task<List<Portfolio>> GetUsersPortfoliosAsync(string userId)
         {
             return await this.db.Portfolios.ToListAsync().ConfigureAwait(false);
+        }
+
+        /// <inheritdoc/>
+        public async Task<Portfolio> GetPortfolioById(int portfolioId)
+        {
+            return await this.db.Portfolios.Where(p => p.Id == portfolioId).FirstOrDefaultAsync().ConfigureAwait(false);
         }
 
         /// <inheritdoc/>

@@ -5,6 +5,7 @@
 namespace HilresChart.Core.Model
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// Portfolio trade class.
@@ -14,6 +15,7 @@ namespace HilresChart.Core.Model
         /// <summary>
         /// Gets or sets symbol.
         /// </summary>
+        [Required]
         public string Symbol { get; set; }
 
         /// <summary>

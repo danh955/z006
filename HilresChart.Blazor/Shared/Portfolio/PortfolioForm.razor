@@ -1,34 +1,98 @@
-﻿@using Syncfusion.Blazor.Navigations
+﻿@using HilresChart.Core.Model
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.Navigations
 @inject HilresChart.Core.Services.IPortfolioService portfolioService
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
 
-    <div>
-        <SfToolbar OverflowMode="@OverflowMode.Scrollable">
-            <ToolbarItems>
-                <ToolbarItem SuffixIcon="e-AddNew-icon tb-icons" Text="Add" OnClick="OnAddClick" />
-                <ToolbarItem SuffixIcon="e-Delete-icon tb-icons" Text="Delete" OnClick="OnDeleteClick" />
-                <ToolbarItem SuffixIcon="e-Edit-icon tb-icons" Text="Edit" OnClick="OnEditClick" />
-            </ToolbarItems>
-        </SfToolbar>
+<div>
+    <SfToolbar OverflowMode="@OverflowMode.Scrollable">
+        <ToolbarItems>
+            <ToolbarItem SuffixIcon="e-AddNew-icon tb-icons" Text="Add" OnClick="OnAddClick" />
+            <ToolbarItem SuffixIcon="e-Delete-icon tb-icons" Text="Delete" OnClick="OnDeleteClick" />
+            <ToolbarItem SuffixIcon="e-Edit-icon tb-icons" Text="Edit" OnClick="OnEditClick" />
+        </ToolbarItems>
+    </SfToolbar>
+</div>
+
+<EditForm Model="@portfolio" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="col-form-label">Portfolio Name :</label>
+            @if (isEditMode)
+            {
+                <SfTextBox Type="InputType.Text" @bind-Value="@portfolio.Name" />
+            }
+            else
+            {
+                <div>@portfolio.Name</div>
+            }
+        </div>
     </div>
+    @if (isEditMode)
+    {
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    }
+</EditForm>
 
-    <div>@PortfolioId</div>
+<div>
+    @PortfolioId<br />
+    @portfolio.Name<br />
+    @message
+</div>
 
-    @code {
-        [Parameter]
-        public int PortfolioId { get; set; }
+@code {
+    private bool isEditMode = false;
+    private int portfolioId;
+    private string message;
 
-        public void OnAddClick(ClickEventArgs args)
+    [Parameter]
+    public int PortfolioId
+    {
+        get { return this.portfolioId; }
+        set
         {
-            ////await this.portfolioService.AddAsync(new Portfolio { Name = "test" + DateTime.Now.ToString(), UserId = @accessor.GetUserId() });
-            ////await this.LoadTableAsync();
-        }
-
-        public void OnDeleteClick(ClickEventArgs args)
-        {
-        }
-
-        public void OnEditClick(ClickEventArgs args)
-        {
+            this.portfolioId = value;
+            this.LoadFormAsync().Wait();
         }
     }
+
+    public Portfolio portfolio;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await this.LoadFormAsync();
+    }
+
+    private async Task LoadFormAsync()
+    {
+        this.portfolio = (await portfolioService.GetPortfolioById(PortfolioId)) ?? new Portfolio();
+    }
+
+    private void HandleValidSubmit()
+    {
+        this.message = "Submited on " + DateTime.Now.ToString();
+        //// TODO: update database.
+        this.isEditMode = false;
+    }
+
+    public void OnAddClick(ClickEventArgs args)
+    {
+        ////await this.portfolioService.AddAsync(new Portfolio { Name = "test" + DateTime.Now.ToString(), UserId = @accessor.GetUserId() });
+        ////await this.LoadTableAsync();
+        this.isEditMode = false;
+    }
+
+    public void OnDeleteClick(ClickEventArgs args)
+    {
+        this.isEditMode = false;
+    }
+
+    public void OnEditClick(ClickEventArgs args)
+    {
+        this.isEditMode = true;
+    }
+}

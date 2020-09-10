@@ -4,6 +4,7 @@
 
 namespace HilresChart.Core.Model
 {
+    using System.ComponentModel.DataAnnotations;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
@@ -19,11 +20,13 @@ namespace HilresChart.Core.Model
         /// <summary>
         /// Gets or sets user ID.
         /// </summary>
+        [Required]
         public string UserId { get; set; }
 
         /// <summary>
         /// Gets or sets name of portfolio.
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         /// <summary>
